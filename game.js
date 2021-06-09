@@ -97,10 +97,10 @@
                     currentPlayerId = playerIndex;
                     state[playerSelect[0]][playerSelect[1]] = mode.turn;
                     if (playerIndex == 0) {
-                        state[playerSelect[0] + 1][playerSelect[1]] = mode.turn;
+                        state[playerSelect[0]][playerSelect[1] + 1] = mode.turn;
                     }
                     else {
-                        state[playerSelect[0]][playerSelect[1] + 1] = mode.turn;
+                        state[playerSelect[0] + 1][playerSelect[1]] = mode.turn;
                     }
                 }
             }
@@ -175,9 +175,9 @@
             serachSelect: function(ogm, board, playerId) {
                 var selections = [];
                 if (playerId == 0) {
-                    for (var index1 = 0; index1 < board.length - 1; index1++) {
-                        for (var index2 = 0; index2 < board[index1].length; index2++) {
-                            if (board[index1][index2] == 0 && board[index1 + 1][index2] == 0) {
+                    for (var index1 = 0; index1 < board.length; index1++) {
+                        for (var index2 = 0; index2 < board[index1].length - 1; index2++) {
+                            if (board[index1][index2] == 0 && board[index1][index2 + 1] == 0) {
                                 selections.push([
                                     ogm.deepCopy([index1, index2]), null
                                 ]);
@@ -186,9 +186,9 @@
                     }
                 }
                 else {
-                    for (var index1 = 0; index1 < board.length; index1++) {
-                        for (var index2 = 0; index2 < board[index1].length - 1; index2++) {
-                            if (board[index1][index2] == 0 && board[index1][index2 + 1] == 0) {
+                    for (var index1 = 0; index1 < board.length - 1; index1++) {
+                        for (var index2 = 0; index2 < board[index1].length; index2++) {
+                            if (board[index1][index2] == 0 && board[index1 + 1][index2] == 0) {
                                 selections.push([
                                     ogm.deepCopy([index1, index2]), null
                                 ]);
