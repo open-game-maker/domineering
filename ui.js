@@ -7,19 +7,27 @@
     board: null,
     /** 各プレイヤーの現在のターンにおける選択の制約のデータ */
     selections: null,
+    initialize: function(ui, chat, width, height, completeShareState) {
+        this.playerId = -1;
+        this.mPrevChatLength = 0;
+        this.board = null;
+        this.selections = null;
+    },
     /**
      * 画面にUIを表示する
      * @param {*} ui 汎用関数
      * @param {*} chat プレイヤーに送信されているチャット
      */
-    drawCurrent: function(ui, chat, width, height, completeShareState) {
+    draw: function(ui, chat, width, height, completeShareState) {
         //画面の初期化
-        ui.init()
+        ui.clear()
 
         //クリック時の関数でthisを使用するために変数として持つ
         var thisObj = this
         //描画のビューのID用のカウンタ
         var idCount = 0;
+        //最も新しい盤面情報を描画するために一度描画用に盤面を取得したらtrueにする
+        var isBoardDraw = false;
         
         //チャットで取得したゲームの状態を変数として保持する
         for (var index = chat.length - 1; index >= this.mPrevChatLength; index--) {
@@ -29,7 +37,8 @@
                 //プレイヤーのIDをセット
                 this.playerId = chat[index].rawBody.signal
             }
-            else if (ui.equal(shareIndexList, [])) {
+            else if (!isBoardDraw && ui.equal(shareIndexList, [])) {
+                isBoardDraw = true;
                 //盤面の表示用の値を取得
                 this.board = chat[index].rawBody.shareState[0];
                 //選択肢を取得
