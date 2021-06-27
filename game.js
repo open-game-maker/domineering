@@ -20,7 +20,6 @@
      */
     initialize: function(ogm, random, rule, mode) {
         //ゲームの状態
-        //0: 各プレイヤのライフ, 1: デッキのカード, 2: 手札のカード, 3: 選択されたカード, 4: プレイヤーの属する状態変化
         var state = [];
 
         var stageSize = 0;
