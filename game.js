@@ -32,7 +32,7 @@
         else {
             stageSize = 5;
         }
-        if (stageSize <= 0) {
+        if (stageSize <= 2) {
             stageSize = 5;
         }
 
